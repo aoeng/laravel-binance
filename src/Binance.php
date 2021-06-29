@@ -18,7 +18,7 @@ class Binance
 
     protected $nonce = '';
 
-    protected $signature = '';
+    protected $signature = true;
 
     protected $headers = [];
 
@@ -76,7 +76,7 @@ class Binance
      * */
     protected function signature()
     {
-        if (empty($this->key) || empty($this->data)) return;
+        if (empty($this->secret) || empty($this->data)) return;
 
         $query = http_build_query($this->data, '', '&');
 
@@ -93,7 +93,7 @@ class Binance
     protected function headers()
     {
         $this->headers = [
-            'X-MBX-APIKEY'=>$this->key,
+            'X-MBX-APIKEY' => $this->key,
         ];
     }
 
@@ -102,9 +102,9 @@ class Binance
      * */
     protected function options()
     {
-        if(isset($this->options['headers'])) $this->headers=array_merge($this->headers,$this->options['headers']);
+        if (isset($this->options['headers'])) $this->headers = array_merge($this->headers, $this->options['headers']);
 
-        $this->options['headers']=$this->headers;
+        $this->options['headers'] = $this->headers;
         $this->options['timeout'] = $this->options['timeout'] ?? 60;
     }
 
@@ -115,11 +115,11 @@ class Binance
     {
         $client = new \GuzzleHttp\Client();
 
-        $query = $this->signature === true ? '' : '?'.$this->signature;
+        $query = $this->signature === true ? '' : '?' . $this->signature;
 
-        $response = $client->request($this->type, $this->host.$this->path.$query, $this->options);
+        $response = $client->request($this->type, $this->host . $this->path . $query, $this->options);
 
-        $this->signature='';
+        $this->signature = '';
 
         return $response->getBody()->getContents();
     }
