@@ -1,0 +1,39 @@
+{
+    "name": "aoeng/laravel-binance",
+    "type": "library",
+    "description": "Binance API Like the official document interface, Support for arbitrary extension.",
+    "license": "MIT",
+    "keywords": [
+        "bitmex",
+        "binance",
+        "okex",
+        "huobi",
+        "kucoin",
+        "kumex"
+    ],
+    "authors": [
+        {
+            "name": "Dang",
+            "email": "859726077@qq.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.0",
+        "laravel/framework": "^8.0.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Aoeng\\Laravel\\Binance\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Aoeng\\Laravel\\Binance\\BinanceServiceProvider"
+            ],
+            "aliases": {
+                "binance": "Aoeng\\Laravel\\Huobi\\Facades\\Binance"
+            }
+        }
+    }
+}
