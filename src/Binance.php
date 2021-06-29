@@ -18,7 +18,7 @@ class Binance
 
     protected $nonce = '';
 
-    protected $signature = true;
+    protected $signature = '';
 
     protected $headers = [];
 
@@ -80,11 +80,7 @@ class Binance
 
         $query = http_build_query($this->data, '', '&');
 
-        if ($this->signature === true) {
-            $this->signature = $query . '&signature=' . hash_hmac('sha256', $query, $this->secret);
-        } else {
-            $this->signature = $query;
-        }
+        $this->signature = $query . '&signature=' . hash_hmac('sha256', $query, $this->secret);
     }
 
     /**
@@ -115,9 +111,7 @@ class Binance
     {
         $client = new \GuzzleHttp\Client();
 
-        $query = $this->signature === true ? '' : '?' . $this->signature;
-
-        $response = $client->request($this->type, $this->host . $this->path . $query, $this->options);
+        $response = $client->request($this->type, $this->host . $this->path . '?' . $this->signature, $this->options);
 
         $this->signature = '';
 

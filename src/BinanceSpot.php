@@ -16,8 +16,6 @@ class BinanceSpot extends Binance
     {
         parent::__construct();
 
-        $this->signature = true;
-        
         $this->data['timestamp'] = time() . '000';
         $this->data['recvWindow'] = config('binance.recvWindow', 5000);
         $this->host = config('binance.host.spot', 'https://api.binance.com');

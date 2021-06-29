@@ -14,9 +14,6 @@ class BinanceFuture extends Binance
     public function __construct()
     {
         parent::__construct();
-
-        $this->signature = true;
-
         $this->data['timestamp'] = time() . '000';
         $this->data['recvWindow'] = config('binance.recvWindow', 5000);
         $this->host = config('binance.host.future', 'https://fapi.binance.com');
@@ -42,6 +39,7 @@ class BinanceFuture extends Binance
     {
         $this->type = 'GET';
         $this->path = '/fapi/v1/positionSide/dual';
+
         return $this->exec();
     }
 
