@@ -51,6 +51,15 @@ class BinanceFuture extends Binance
         return $this->exec();
     }
 
+    public function leverBracket($symbol = null)
+    {
+        $this->type = 'GET';
+        $this->path = '/fapi/v1/leverageBracket';
+
+        $this->data = array_merge($this->data, array_filter(compact('symbol')));
+        return $this->exec();
+    }
+
     public function changeLever($symbol, $leverage)
     {
         $this->type = 'POST';

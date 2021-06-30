@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Facade as LaravelFacade;
  * @method static \Aoeng\Laravel\Binance\BinanceFuture  keySecret($key, $secret)
  * @method static array positionSide()
  * @method static array changePositionSide($dualSidePosition)
+ * @method static array leverBracket($symbol = null)
  * @method static array changeLever($symbol, $leverage)
  * @method static array changeMarginModel($symbol, $marginType = 'ISOLATEDISOLATED')
  * @method static array changeMargin($symbol, $amount, $type = 1, $positionSide = '')
