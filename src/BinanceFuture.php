@@ -19,6 +19,14 @@ class BinanceFuture extends Binance
         $this->host = config('binance.host.future', 'https://fapi.binance.com');
     }
 
+    public function exchangeInfo($symbol = null)
+    {
+        $this->type = 'GET';
+        $this->path = '/fapi/v1/exchangeInfo';
+        $this->data = array_merge($this->data, array_filter(compact('symbol')));
+        return $this->exec();
+    }
+
     /**
      * 万向划转  transfer
      * @bodyParam page int required page
