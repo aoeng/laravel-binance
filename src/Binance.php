@@ -78,6 +78,9 @@ class Binance
     {
         if (empty($this->secret) || empty($this->data)) return;
 
+        $this->data['timestamp'] = time() . '000';
+        $this->data['recvWindow'] = config('binance.recvWindow', 5000);
+
         $query = http_build_query($this->data, '', '&');
 
         $this->signature = $query . '&signature=' . hash_hmac('sha256', $query, $this->secret);
@@ -129,7 +132,7 @@ class Binance
         try {
             return json_decode($this->send(), true);
         } catch (RequestException $e) {
-            info('ERROR:', [$e->getMessage()]);
+            info('ERROR:', [$e->getCode(), $e->getResponse()]);
             return ['status' => 'error', 'message' => $e->getMessage()];
         }
     }

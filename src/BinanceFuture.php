@@ -14,8 +14,6 @@ class BinanceFuture extends Binance
     public function __construct()
     {
         parent::__construct();
-        $this->data['timestamp'] = time() . '000';
-        $this->data['recvWindow'] = config('binance.recvWindow', 5000);
         $this->host = config('binance.host.future', 'https://fapi.binance.com');
     }
 
