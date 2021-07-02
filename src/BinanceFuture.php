@@ -25,6 +25,13 @@ class BinanceFuture extends Binance
         return $this->exec();
     }
 
+    public function time()
+    {
+        $this->type = 'GET';
+        $this->path = '/fapi/v1/time';
+
+        return $this->exec();
+    }
 
     public function positionSide()
     {

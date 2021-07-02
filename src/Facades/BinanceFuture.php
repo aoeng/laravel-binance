@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Facade as LaravelFacade;
 /**
  * @method static \Aoeng\Laravel\Binance\BinanceFuture  keySecret($key, $secret)
  * @method static array positionSide()
+ * @method static array time()
  * @method static array changePositionSide($dualSidePosition)
  * @method static array exchangeInfo($symbol = null)
  * @method static array leverBracket($symbol = null)
