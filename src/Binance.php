@@ -76,10 +76,10 @@ class Binance
      * */
     protected function signature()
     {
-        if (empty($this->secret) || empty($this->data)) return;
+        if (empty($this->secret)) return;
 
         $this->data = array_merge($this->data, [
-            'timestamp'  => microtime(true) * 1000,
+            'timestamp'  => time() . '000',
             'recvWindow' => config('binance.recvWindow', 5000)
         ]);
 

@@ -154,7 +154,7 @@ class BinanceFuture extends Binance
     {
         $this->type = 'POST';
         $this->path = '/fapi/v1/order';
-        $this->data = array_merge($this->data, array_filter($this->data));
+        $this->data = array_merge($this->data, array_filter($data));
         return $this->exec();
     }
 }
