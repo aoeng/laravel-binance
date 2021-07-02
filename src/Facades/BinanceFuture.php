@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Facade as LaravelFacade;
  * @method static array changeLever($symbol, $leverage)
  * @method static array changeMarginModel($symbol, $marginType = 'ISOLATEDISOLATED')
  * @method static array changeMargin($symbol, $amount, $type = 1, $positionSide = '')
- * @method static array transfer($amount, $type = 'UMFUTURE_MAIN', $asset = 'USDT')
  * @method static array balance()
  * @method static array account()
  * @method static array positions($symbol = '')

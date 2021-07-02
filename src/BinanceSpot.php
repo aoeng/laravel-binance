@@ -21,6 +21,14 @@ class BinanceSpot extends Binance
         $this->host = config('binance.host.spot', 'https://api.binance.com');
     }
 
+    public function state()
+    {
+        $this->type = 'GET';
+        $this->path = '/sapi/v1/account/apiTradingStatus';
+
+        return $this->exec();
+    }
+
     // ====================账户数据===============
     public function accounts()
     {

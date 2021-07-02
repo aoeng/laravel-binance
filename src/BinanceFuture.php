@@ -27,21 +27,6 @@ class BinanceFuture extends Binance
         return $this->exec();
     }
 
-    /**
-     * 万向划转  transfer
-     * @bodyParam page int required page
-     * @param $amount
-     * @param string $type
-     * @param string $asset
-     * @return array|mixed
-     */
-    public function transfer($amount, $type = 'UMFUTURE_MAIN', $asset = 'USDT')
-    {
-        $this->type = 'POST';
-        $this->path = '/sapi/v1/asset/transfer';
-        $this->data = array_merge($this->data, compact('type', 'asset', 'amount'));
-        return $this->exec();
-    }
 
     public function positionSide()
     {
