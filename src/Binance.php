@@ -78,8 +78,10 @@ class Binance
     {
         if (empty($this->secret) || empty($this->data)) return;
 
-        $this->data['timestamp'] = time() . '000';
-        $this->data['recvWindow'] = config('binance.recvWindow', 5000);
+        $this->data = array_merge($this->data, [
+            'timestamp'  => microtime(true) * 1000,
+            'recvWindow' => config('binance.recvWindow', 5000)
+        ]);
 
         $query = http_build_query($this->data, '', '&');
 
@@ -136,20 +138,11 @@ class Binance
                 $contents = $e->getResponse()->getBody()->getContents();
 
                 $temp = json_decode($contents, true);
-                info('ERROR:', [$temp]);
                 if (!empty($temp)) {
-                    $query = '';
-                    if (!empty($this->data)) $query = http_build_query($this->data, '', '&');
-
-                    $temp['_method'] = $this->type;
-                    $temp['_url'] = $this->host . $this->path . $query;
-                } else {
-                    $temp['_message'] = $e->getMessage();
+                    return $temp;
                 }
-            } else {
-                $temp['_message'] = $e->getMessage();
             }
-            return ['status' => 'error', 'message' => $e->getMessage()];
+            return ['code' => -1, 'msg' => $e->getMessage()];
         }
     }
 }
