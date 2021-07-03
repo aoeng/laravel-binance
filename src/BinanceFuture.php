@@ -110,7 +110,7 @@ class BinanceFuture extends Binance
         return $this->exec();
     }
 
-    public function positions($symbol = '')
+    public function positionRisk($symbol = '')
     {
         $this->type = 'GET';
         $this->path = '/fapi/v2/positionRisk';
@@ -118,7 +118,16 @@ class BinanceFuture extends Binance
         return $this->exec();
     }
 
-    public function orderHistory($symbol, $orderId = null, $startTime = null, $endTime = null, $limit = 500)
+    public function exchangeHistory($symbol, $fromId = 0, $startTime = null, $endTime = null, $limit = 500)
+    {
+        $this->type = 'GET';
+        $this->path = '/fapi/v1/userTrades';
+        $this->data = array_merge($this->data, array_filter(compact('symbol', 'fromId', 'startTime', 'endTime', 'limit')));
+        return $this->exec();
+    }
+
+
+    public function orderHistory($symbol, $orderId = 0, $startTime = null, $endTime = null, $limit = 500)
     {
         $this->type = 'GET';
         $this->path = '/fapi/v1/allOrders';

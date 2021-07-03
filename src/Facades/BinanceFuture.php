@@ -16,12 +16,13 @@ use Illuminate\Support\Facades\Facade as LaravelFacade;
  * @method static array changeMargin($symbol, $amount, $type = 1, $positionSide = '')
  * @method static array balance()
  * @method static array account()
- * @method static array positions($symbol = '')
+ * @method static array positionRisk($symbol = '')
  * @method static array orderPlace(array $data = [])
  * @method static array orderCancel($symbol, $orderId)
  * @method static array orderCancelAll($symbol)
  * @method static array orderSearch($symbol, $orderId)
- * @method static array orderHistory($symbol, $orderId = null, $startTime = null, $endTime = null, $limit = 500)
+ * @method static array orderHistory($symbol, $orderId = 0, $startTime = null, $endTime = null, $limit = 500)
+ * @method static array exchangeHistory($symbol, $fromId = 0, $startTime = null, $endTime = null, $limit = 500)
  */
 class BinanceFuture extends LaravelFacade
 {
