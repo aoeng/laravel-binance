@@ -91,7 +91,7 @@ class BinanceFuture extends Binance
     public function changeMargin($symbol, $amount, $type = 1, $positionSide = '')
     {
         $this->type = 'POST';
-        $this->path = '/fapi/v1/marginType';
+        $this->path = '/fapi/v1/positionMargin';
         $this->data = array_merge($this->data, array_filter(compact('symbol', 'amount', 'type', 'positionSide')));
         return $this->exec();
     }
