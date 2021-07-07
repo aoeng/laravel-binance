@@ -119,6 +119,7 @@ class Binance
         $response = $client->request($this->type, $this->host . $this->path . '?' . $this->signature, $this->options);
 
         $this->signature = '';
+        $this->data = [];
 
         return $response->getBody()->getContents();
     }
