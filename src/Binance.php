@@ -35,11 +35,6 @@ class Binance
         $this->key = config('binance.key', '');
         $this->secret = config('binance.secret', '');
 
-        $this->nonce();
-
-        $this->headers();
-
-        $this->options();
 
     }
 
@@ -63,7 +58,7 @@ class Binance
     {
         $this->nonce();
 
-        $this->signature();
+//        $this->signature();
 
         $this->headers();
 
@@ -146,6 +141,8 @@ class Binance
      * */
     protected function exec()
     {
+
+        $this->auth();
         //可以记录日志
         try {
             return json_decode($this->send(), true);
