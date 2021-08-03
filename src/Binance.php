@@ -34,6 +34,13 @@ class Binance
     {
         $this->key = config('binance.key', '');
         $this->secret = config('binance.secret', '');
+
+        $this->nonce();
+
+        $this->headers();
+
+        $this->options();
+
     }
 
     public function keySecret($key, $secret)
@@ -116,9 +123,19 @@ class Binance
     {
         $client = new \GuzzleHttp\Client();
 
-        $response = $client->request($this->type, $this->host . $this->path . '?' . $this->signature, $this->options);
+        $this->data = array_merge($this->data, [
+            'timestamp'  => time() . '000',
+            'recvWindow' => config('binance.recvWindow', 5000)
+        ]);
 
-        $this->signature = '';
+        $query = http_build_query($this->data, '', '&');
+
+        if (!empty($this->secret)) {
+            $query = $query . '&signature=' . hash_hmac('sha256', $query, $this->secret);
+        }
+
+        $response = $client->request($this->type, $this->host . $this->path . '?' . $query, $this->options);
+
         $this->data = [];
 
         return $response->getBody()->getContents();
@@ -129,8 +146,6 @@ class Binance
      * */
     protected function exec()
     {
-        $this->auth();
-
         //可以记录日志
         try {
             return json_decode($this->send(), true);
