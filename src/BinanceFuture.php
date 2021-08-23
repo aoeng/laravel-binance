@@ -33,6 +33,30 @@ class BinanceFuture extends Binance
         return $this->exec();
     }
 
+    public function createListenKey()
+    {
+        $this->type = 'POST';
+        $this->path = '/fapi/v1/listenKey';
+
+        return $this->exec();
+    }
+
+    public function putListenKey()
+    {
+        $this->type = 'PUT';
+        $this->path = '/fapi/v1/listenKey';
+
+        return $this->exec();
+    }
+
+    public function deleteListenKey()
+    {
+        $this->type = 'DELETE';
+        $this->path = '/fapi/v1/listenKey';
+
+        return $this->exec();
+    }
+
     public function positionSide()
     {
         $this->type = 'GET';

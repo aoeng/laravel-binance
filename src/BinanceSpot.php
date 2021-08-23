@@ -19,6 +19,15 @@ class BinanceSpot extends Binance
         $this->host = config('binance.host.spot', 'https://api.binance.com');
     }
 
+    public function keySecret($key, $secret)
+    {
+
+        $this->key = $key;
+        $this->secret = $secret;
+
+        return $this;
+    }
+
     public function state()
     {
         $this->type = 'GET';

@@ -32,14 +32,15 @@ class Binance
 
     public function __construct()
     {
-        $this->key = config('binance.key', '');
-        $this->secret = config('binance.secret', '');
-
-
+        if (config('binance.key', '') != '') {
+            $this->key = config('binance.key', '');
+            $this->secret = config('binance.secret', '');
+        }
     }
 
     public function keySecret($key, $secret)
     {
+
         $this->key = $key;
         $this->secret = $secret;
 

@@ -23,6 +23,9 @@ use Illuminate\Support\Facades\Facade as LaravelFacade;
  * @method static array orderSearch($symbol, $orderId)
  * @method static array orderHistory($symbol, $orderId = 0, $startTime = null, $endTime = null, $limit = 500)
  * @method static array exchangeHistory($symbol, $fromId = 0, $startTime = null, $endTime = null, $limit = 500)
+ * @method static array createListenKey()
+ * @method static array putListenKey()
+ * @method static array deleteListenKey()
  */
 class BinanceFuture extends LaravelFacade
 {
