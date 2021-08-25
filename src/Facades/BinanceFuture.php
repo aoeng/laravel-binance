@@ -31,6 +31,6 @@ class BinanceFuture extends LaravelFacade
 {
     protected static function getFacadeAccessor()
     {
-        return 'binanceFuture';
+        return 'binance.future';
     }
 }

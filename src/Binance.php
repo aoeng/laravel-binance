@@ -106,6 +106,7 @@ class Binance
      * */
     protected function options()
     {
+        unset($this->options['headers']['X-MBX-APIKEY']);
         if (isset($this->options['headers'])) $this->headers = array_merge($this->headers, $this->options['headers']);
 
         $this->options['headers'] = $this->headers;
@@ -144,6 +145,7 @@ class Binance
     {
 
         $this->auth();
+
         //可以记录日志
         try {
             return json_decode($this->send(), true);

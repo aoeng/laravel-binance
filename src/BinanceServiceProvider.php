@@ -18,13 +18,18 @@ class BinanceServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind('binance', function ($app) {
-            return new BinanceSpot();
+            $config = $app->make('config')->get('binance', []);
+
+            return new BinanceManager($app, $config);
         });
 
-        $this->app->bind('binanceFuture', function ($app) {
+        $this->app->bind('binance.future', function ($app) {
             return new BinanceFuture();
         });
 
+        $this->app->singleton('binance.spot', function ($app) {
+            return new BinanceSpot();
+        });
 
     }
 

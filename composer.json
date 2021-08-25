@@ -32,7 +32,9 @@
                 "Aoeng\\Laravel\\Binance\\BinanceServiceProvider"
             ],
             "aliases": {
-                "binance": "Aoeng\\Laravel\\Huobi\\Facades\\Binance"
+                "binance": "Aoeng\\Laravel\\Binance\\Facades\\Binance",
+                "binance.spot": "Aoeng\\Laravel\\Binance\\Facades\\BinanceSpot",
+                "binance.future": "Aoeng\\Laravel\\Binance\\Facades\\BinanceFuture"
             }
         }
     }
